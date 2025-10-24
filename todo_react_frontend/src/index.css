@@ -1,13 +1,155 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --retro-bg: #0f172a; /* deep slate */
+  --retro-surface: #111827;
+  --retro-accent: #06b6d4;
+  --retro-primary: #3b82f6;
+  --retro-text: #e5e7eb;
+  --retro-muted: #9ca3af;
+  --retro-danger: #EF4444;
+  --border: #1f2937;
+  --shadow: 0 0 0 2px #06b6d455, 0 0 0 4px #3b82f633;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="light"] {
+  --retro-bg: #f9fafb;
+  --retro-surface: #ffffff;
+  --retro-text: #111827;
+  --retro-muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--retro-bg);
+  color: var(--retro-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+a { color: var(--retro-primary); }
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.retro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(180deg, var(--retro-surface), var(--retro-bg));
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.retro-title {
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--retro-accent);
+  text-shadow: 1px 1px 0 #000;
+}
+
+.pixel { color: var(--retro-primary); margin-right: 6px; }
+
+.retro-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 16px;
+  background: var(--retro-surface);
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.retro-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.retro-input {
+  flex: 1;
+  padding: 12px 10px;
+  border: 2px solid var(--border);
+  background: #0b1220;
+  color: var(--retro-text);
+  outline: none;
+  box-shadow: inset 0 0 0 2px #000;
+}
+[data-theme="light"] .retro-input {
+  background: #f3f4f6;
+}
+
+.retro-btn {
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  background: linear-gradient(180deg, var(--retro-primary), #1d4ed8);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+}
+.retro-btn:hover {
+  filter: brightness(1.1);
+}
+.retro-btn.ghost {
+  background: transparent;
+  color: var(--retro-text);
+  border-color: var(--retro-primary);
+}
+.retro-btn.danger {
+  background: linear-gradient(180deg, var(--retro-danger), #b91c1c);
+  border-color: #7f1d1d;
+}
+
+.retro-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 2px solid var(--border);
+}
+
+.retro-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--border);
+  background: #0b1220;
+}
+[data-theme="light"] .retro-list-item {
+  background: #f8fafc;
+}
+.retro-list-item:last-child {
+  border-bottom: none;
+}
+
+.retro-list-text {
+  flex: 1;
+  padding-right: 12px;
+}
+
+.empty-state, .loading, .error-text {
+  margin-top: 10px;
+  color: var(--retro-muted);
+}
+
+.error-text { color: var(--retro-danger); }
+
+.retro-footer {
+  margin-top: auto;
+  padding: 16px;
+  text-align: center;
+  color: var(--retro-muted);
 }

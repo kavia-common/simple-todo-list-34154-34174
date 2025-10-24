@@ -1,82 +1,37 @@
-# Lightweight React Template for KAVIA
+# Todo React Frontend (Retro Theme)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+This app provides a retro-themed Todo interface with persistence via a SQLite service.
 
-## Features
+Architecture:
+- React SPA on port 3000
+- Thin Express server on port 3001 (starts alongside the client)
+- SQLite service on port 5001
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+API (served by the Express server):
+- GET /api/todos -> list todos
+- POST /api/todos -> { title } -> create todo
+- DELETE /api/todos/:id -> delete by id
 
-## Getting Started
+Environment:
+- Create a .env in this folder from .env.example and set:
+  - DATABASE_SERVICE_URL=http://todo_sqlite_database:5001 (container networking) OR
+  - DATABASE_SERVICE_URL=http://localhost:5001 (local dev)
 
-In the project directory, you can run:
+Run locally:
+- npm install
+- npm start
+  - Runs client and server concurrently.
+  - CRA dev server proxies /api calls to http://localhost:3001.
 
-### `npm start`
+Troubleshooting:
+- If you see \"react-scripts: not found\" during build, ensure dependencies were installed:
+  - npm install
+  - If needed, remove any stale node_modules and retry install.
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Build:
+- npm run build
 
-### `npm test`
+Notes:
+- The server initializes the `todos` table if it doesn't exist.
+- Styling is intentionally retro: monospace fonts, pixel-ish accents, and high-contrast buttons.
 
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
